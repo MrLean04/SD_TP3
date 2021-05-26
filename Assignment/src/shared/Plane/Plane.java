@@ -166,7 +166,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void setPassengerStatesUpdate(int id, PassengerState state) {
-
+		try {
+            repoInterface.setPassengerStatesUpdate(id,state.toString());
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
     }
 
     /**
@@ -174,6 +180,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void setPilotState2Update(PilotState state) {
+		try {
+            repoInterface.setPilotState2Update(state.toString());
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
 
     }
 
@@ -182,6 +195,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void setPilotStateUpdate(int numberF, PilotState state) {
+		try {
+			repoInterface.setPilotStateUpdate(numberF, state.toString());
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
 
     }
 
@@ -190,6 +210,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void setHostessStateUpdate(HostessState state) {
+		try {
+			repoInterface.setHostessStateUpdate(state.toString());
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
 
     }
 
@@ -198,6 +225,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void inQueueUpdate(int size) {
+		try {
+			repoInterface.inQueueUpdate(size);
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
 
     }
 
@@ -206,6 +240,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void inPlaneUpdate(int size) {
+		try {
+			repoInterface.inPlaneUpdate(size);
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
     }
 
     /**
@@ -213,6 +254,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void atDestinationUpdate(int size) {
+		try {
+			repoInterface.atDestinationUpdate(size);
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
     }
 
     /**
@@ -220,6 +268,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void reportBoarding() {
+		try {
+			repoInterface.reportBoarding();
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
 
     }
 
@@ -228,6 +283,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void reportCheck(int id) {
+		try {
+			repoInterface.reportCheck(id);
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
 
     }
 
@@ -236,6 +298,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void reportDeparted() {
+		try {
+			repoInterface.reportDeparted();
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
 
     }
 
@@ -244,6 +313,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void reportLDeparted() {
+		try {
+			repoInterface.reportLDeparted();
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
 
     }
 
@@ -252,6 +328,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void reportArrived() {
+		try {
+			repoInterface.reportArrived();
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
 
     }
 
@@ -260,6 +343,13 @@ public class Plane implements PilotP, PassengerP, HostessP, PlaneInterface {
      *
      */
     private synchronized void reportreturning() {
+		try {
+			repoInterface.reportreturning();
+        }
+        catch(RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + e.getMessage() + "!");
+            System.exit(1);
+        }
     }
 
     @Override

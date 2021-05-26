@@ -1,9 +1,12 @@
 package entities.Passenger;
 
-//import java.lang.ref.Cleaner;
+import java.rmi.RemoteException;
 import java.util.*;
 
 import entities.Passenger.States.PassengerState;
+import interfaces.DepartureInterface;
+import interfaces.DestinationInterface;
+import interfaces.PlaneInterface;
 
 
 /**
@@ -13,8 +16,11 @@ import entities.Passenger.States.PassengerState;
 public class Passenger extends Thread {
 
 	private PassengerState state;
-	private final int id=0;
+	private int id;
 	private boolean happyPassenger = false;
+	private DepartureInterface departureInterface;
+	private PlaneInterface planeInterface;
+	private DestinationInterface destinationInterface;
 
 
 	/**
@@ -22,8 +28,12 @@ public class Passenger extends Thread {
 	 *
 	 * @param id id of the passenger
 	 */
-	public Passenger(int id) {
+	public Passenger(int id, DepartureInterface departureInterface, PlaneInterface planeInterface, DestinationInterface destinationInterface) {
 		//to-do
+		this.id=id;
+		this.departureInterface = departureInterface;
+		this.planeInterface=planeInterface;
+		this.destinationInterface=destinationInterface;
 	}
 
 	/**
@@ -31,6 +41,12 @@ public class Passenger extends Thread {
 	 *
 	 */
 	private void travelToAirport() {
+        try {
+            departureInterface.travelToAirport();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 	}
 
 	/**
@@ -38,7 +54,12 @@ public class Passenger extends Thread {
 	 *
 	 */
 	private void waitInQueue() {
-
+        try {
+            departureInterface.waitInQueue(this.id);
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 	}
 
 	/**
@@ -46,7 +67,14 @@ public class Passenger extends Thread {
 	 *
 	 */
 	private boolean showDocuments() {
-		return false;
+		boolean temp = false;
+        try {
+            temp = departureInterface.showDocuments(this.id);
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
+        return temp;
 	}
 
 	/**
@@ -54,7 +82,14 @@ public class Passenger extends Thread {
 	 *
 	 */
 	private boolean waitinQueueFlight() {
-		return false;
+		boolean temp = false;
+        try {
+            temp = departureInterface.waitinQueueFlight();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
+        return temp;
 	}
 
 	/**
@@ -62,7 +97,14 @@ public class Passenger extends Thread {
 	 *
 	 */
 	private boolean BoardThePlane() {
-		return false;
+		boolean temp = false;
+        try {
+            temp = planeInterface.BoardThePlane(this.id);
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
+        return temp;
 	}
 
 	/**
@@ -70,7 +112,12 @@ public class Passenger extends Thread {
 	 *
 	 */
 	private void Deboarding() {
-
+        try {
+            destinationInterface.Deboarding(this.id);
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 	}
 
 	/**
@@ -78,7 +125,12 @@ public class Passenger extends Thread {
 	 *
 	 */
 	private void WaitingForEndOfFlight() {
-
+        try {
+            planeInterface.WaitingForEndOfFlight();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 	}
 
 	/**
@@ -86,6 +138,12 @@ public class Passenger extends Thread {
 	 *
 	 */
 	private void atAirport() {
+        try {
+            destinationInterface.atAirport(this.id);
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 
 	}
 

@@ -17,6 +17,8 @@ public interface RepoInterface extends Remote{
 
     public void setPilotState2Update(String state)  throws RemoteException;
 
+    public void setPilotStateUpdate(int numberF,String state)  throws RemoteException;
+
     public void inPlaneUpdate(int size)  throws RemoteException;
 
     public void atDestinationUpdate(int size)  throws RemoteException;

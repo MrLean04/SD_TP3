@@ -1,9 +1,11 @@
 package entities.Hostess;
 
-//import java.lang.ref.Cleaner;
+
+import java.rmi.RemoteException;
 import java.util.*;
 
 import entities.Hostess.States.HostessState;
+import interfaces.DepartureInterface;
 
 /**
  *
@@ -13,13 +15,15 @@ public class Hostess extends Thread {
 
 	private HostessState state;
 	boolean happyhostess = false;
+	private final DepartureInterface departureInterface;
 
 	/**
 	 * Hostess's constructor.
-	 *
+	 * @param parkInt interface of park
 	 */
-	public Hostess() {
-		//
+	public Hostess( DepartureInterface departureInterface) {
+		//departureInterface
+		this.departureInterface = departureInterface;
 	}
 
 	/**
@@ -27,6 +31,12 @@ public class Hostess extends Thread {
 	 *
 	 */
 	private void preparePassBoarding() {
+		try {
+            departureInterface.preparePassBoarding();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 	}
 
 	/**
@@ -34,7 +44,14 @@ public class Hostess extends Thread {
 	 *
 	 */
 	private boolean checkAndWait() {
-		return false;
+		boolean temp = false;
+        try {
+            temp = departureInterface.checkAndWait();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
+        return temp;
 	}
 
 	/**
@@ -42,7 +59,14 @@ public class Hostess extends Thread {
 	 *
 	 */
 	private boolean planeReadyToTakeoff() {
-		return false;
+		boolean temp = false;
+        try {
+            temp = departureInterface.planeReadyToTakeoff();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
+        return temp;
 	}
 
 	/**
@@ -50,7 +74,14 @@ public class Hostess extends Thread {
 	 *
 	 */
 	private boolean hostessJobDone() {
-		return false;
+		boolean temp = false;
+        try {
+            temp = departureInterface.hostessJobDone();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
+        return temp;
 	}
 
 	/**
@@ -58,7 +89,12 @@ public class Hostess extends Thread {
 	 *
 	 */
 	private void waitForNextFlightH() {
-
+        try {
+			departureInterface.waitForNextFlightH();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 	}
 
 	@Override

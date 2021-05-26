@@ -1,9 +1,13 @@
 package entities.Pilot;
 
-//import java.lang.ref.Cleaner;
+import java.rmi.RemoteException;
 import java.util.*;
 
 import entities.Pilot.States.PilotState;
+import interfaces.DepartureInterface;
+import interfaces.PlaneInterface;
+import interfaces.DestinationInterface;
+
 
 
 /**
@@ -15,14 +19,20 @@ public class Pilot extends Thread {
 
 	private PilotState state;
 	private boolean happypilot = false;
+	private DepartureInterface departureInterface;
+	private PlaneInterface planeInterface;
+	private DestinationInterface destinationInterface;
 
 
 	/**
 	 * Pilot's constructor.
 	 *
 	 */
-	public Pilot() {
+	public Pilot(DepartureInterface departureInterface, PlaneInterface planeInterface, DestinationInterface destinationInterface) {
 		//
+		this.departureInterface = departureInterface;
+		this.planeInterface=planeInterface;
+		this.destinationInterface=destinationInterface;
 	}
 
 
@@ -31,6 +41,12 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private void zeroCount() {
+        try {
+            destinationInterface.zeroCount();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 
 	}
 
@@ -39,7 +55,12 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private void parkAtTransfer() {
-
+        try {
+            departureInterface.parkAtTransfer();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 	}
 
 	/**
@@ -47,6 +68,12 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private void readyForBoarding() {
+        try {
+            departureInterface.readyForBoarding();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 
 	}
 
@@ -55,6 +82,12 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private void WaitForBoarding() {
+        try {
+            departureInterface.WaitForBoarding();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 
 	}
 
@@ -63,7 +96,14 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private boolean WaitForAllInBoard() {
-		return false;
+		boolean temp = false;
+        try {
+            temp = planeInterface.WaitForAllInBoard();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
+        return temp;
 	}
 
 	/**
@@ -71,6 +111,12 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private void upd() {
+        try {
+            planeInterface.upd();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 	}
 
 	/**
@@ -78,6 +124,12 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private void atDestinationPoint() {
+        try {
+            planeInterface.atDestinationPoint();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 
 	}
 
@@ -86,7 +138,12 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private void everyoneStops() {
-
+        try {
+            departureInterface.everyoneStops();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 	}
 
 	/**
@@ -94,7 +151,14 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private boolean AnnounceArrival() {
-		return false;
+		boolean temp = false;
+        try {
+            temp = destinationInterface.AnnounceArrival();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
+        return temp;
 	}
 
 	/**
@@ -102,7 +166,14 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private boolean goBack() {
-		return false;
+		boolean temp = false;
+        try {
+            temp = destinationInterface.goBack();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
+        return temp;
 	}
 
 	/**
@@ -110,7 +181,15 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private boolean lastF() {
-		return false;
+		boolean temp = false;
+        try {
+            temp = destinationInterface.lastF();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
+        return temp;
+
 	}
 
 	/**
@@ -118,7 +197,12 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private void last() {
-
+        try {
+            departureInterface.last();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 	}
 
 	/**
@@ -126,6 +210,12 @@ public class Pilot extends Thread {
 	 *
 	 */
 	private void lFly() {
+		try {
+            planeInterface.lFly();
+        } catch (RemoteException e) {
+            System.err.println("Excepção na invocação remota de método" + getName() + ": " + e.getMessage() + "!");
+            System.exit(1);
+        }
 
 	}
 
