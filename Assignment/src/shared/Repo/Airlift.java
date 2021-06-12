@@ -39,7 +39,7 @@ public class Airlift implements RepoInterface{
     private int inPlane=0;
     private int atDestination=0;
     private int numberF=1;
-    private final String fileName = "Airlift.log";
+    private final String fileName = "Airlift.txt";
 
     private int n_entities = 3;
 

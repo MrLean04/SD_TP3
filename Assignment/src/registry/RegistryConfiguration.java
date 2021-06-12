@@ -9,7 +9,7 @@ public class RegistryConfiguration {
     public static final String RMI_REGISTER_NAME = "RegisterHandler";
     public static final String RMI_REGISTRY_HOSTNAME = "localhost";
     
-    public static final int RMI_REGISTER_PORT = 22447;
+    public static final int RMI_REGISTER_PORT = 22448;
     public static final int PORT_REPO = 22440;
     public static final int PORT_DEPARTURE = 22441;
     public static final int PORT_PLANE = 22442;

@@ -78,11 +78,11 @@ public class DestinationServer {
             reg.bind(RegistryConfiguration.RMI_REGISTRY_DESTINATION_NAME, destinationInterface);
         }
         catch(RemoteException e) {
-            System.out.println("RepairArea registration exception: " + e.getMessage());
+            System.out.println("Destination registration exception: " + e.getMessage());
             System.exit(1);
         }
         catch(AlreadyBoundException e) {
-            System.out.println("RepairArea already bound exception: " + e.getMessage());
+            System.out.println("Destination already bound exception: " + e.getMessage());
             System.exit(1);
         }
         

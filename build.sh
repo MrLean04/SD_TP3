@@ -2,7 +2,7 @@
 
 cd Assignment/src
 
-find -name "*.java" > sources.txt
+find /Users/francisco/Desktop/SD/SD_TP3/Assignment/ -name "*.java" > sources.txt
 javac -cp genclass.jar:./ @sources.txt
 rm sources.txt
 
